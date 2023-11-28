@@ -1,0 +1,81 @@
+<?php
+session_start();
+include 'conn/koneksi.php';
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WEB Pengaduan Masyarakat</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- ICONS -->
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+
+</head>
+
+<body style="background-image: url(img/pexels-jeffry-surianto-9105274.jpg); background-size: cover;">
+
+    <div class="container">
+
+
+
+
+    </div>
+</body>
+
+</html>
+<div class="card" style="padding: 60px; width: 30%; margin: 0 auto; margin-top: 5%;">
+    <h3 style="text-align: center;" class="dark-text">Login!</h3>
+    <form method="POST">
+        <div class="col s12 input-field">
+            <label for="nik">NIK</label>
+            <input id="nik" type="number" name="nik">
+        </div>
+        <div class="col s12 input-field">
+            <label for="nama">Nama</label>
+            <input id="nama" type="text" name="nama">
+        </div>
+        <div class="col s12 input-field">
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username"><br><br>
+        </div>
+        <div class="col s12 input-field">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password"><br><br>
+        </div>
+        <div class="col s12 input-field">
+            <label for="telp">Telp</label>
+            <input id="telp" type="number" name="telp"><br><br>
+        </div>
+        <div class="col s12 input-field">
+            <input type="submit" name="simpan" value="Simpan" class="btn right">
+        </div>
+    </form>
+
+
+    <?php
+    if (isset($_POST['simpan'])) {
+        $nik = $_POST['nik'];
+        $nama = $_POST['nama'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $telp = $_POST['telp'];
+        $query = mysqli_query($koneksi, "INSERT INTO masyarakat VALUES('$nik','$nama','$username','$password,'$telp')");
+        if ($query) {
+            echo "<script>alert('Data Tesimpan')</script>";
+            echo "<script>location='location:registrasi.php?p=registrasi';</script>";
+        }
+    }
+    ?>
+</div>
